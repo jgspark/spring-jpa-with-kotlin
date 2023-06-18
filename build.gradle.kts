@@ -24,8 +24,11 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
-    runtimeOnly("com.h2database:h2")
+    implementation("com.h2database:h2")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+    // 쿼리 데이터 바인딩 로그
+    implementation("com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.0")
 }
 
 tasks.withType<KotlinCompile> {
