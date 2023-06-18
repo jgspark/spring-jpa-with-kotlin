@@ -34,7 +34,7 @@ class MemberRepositoryTest {
 
         //then
         assertEquals(findMember.id, member.id)
-        assertEquals(findMember.userName, member.userName)
+        assertEquals(findMember.name, member.name)
         assertEquals(findMember, member)
     }
 }
