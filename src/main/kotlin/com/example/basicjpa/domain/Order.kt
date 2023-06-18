@@ -24,7 +24,7 @@ data class Order(
     val id: Long,
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
-    val member: Member,
+    var member: Member,
     @OneToMany(mappedBy = "order")
     val orderItems: List<OrderItem> = listOf(),
 
@@ -33,12 +33,26 @@ data class Order(
     // 즉, 주인이됨 (@JoinColumn)
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "delivery_id")
-    val delivery: Delivery,
+    var delivery: Delivery,
     val orderDate: LocalDateTime,
     @Enumerated(EnumType.STRING)
     val orderStatus: OrderStatus
 ) {
 
+    fun setMember(member: Member) {
+        this.member = member
+        (member.orders as MutableList).add(this)
+    }
+
+    fun addOrderItems(orderItem: OrderItem) {
+        (orderItems as MutableList).add(orderItem)
+        orderItem.order = this
+    }
+
+    fun setDelivery(delivery: Delivery){
+        this.delivery = delivery
+        delivery.order = this
+    }
 }
 
 enum class OrderStatus {

@@ -28,7 +28,13 @@ data class Category(
     val items: List<Item> = listOf(),
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
-    val parent: Category,
+    var parent: Category,
     @OneToMany(mappedBy = "parent")
-    val chid: List<Category> = listOf()
-)
+    val child: List<Category> = listOf()
+) {
+
+    fun addChildCategory(child: Category) {
+        (this.child as MutableList).add(child)
+        child.parent = this
+    }
+}
