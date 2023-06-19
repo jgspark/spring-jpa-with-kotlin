@@ -39,7 +39,7 @@ data class Order(
     val orderStatus: OrderStatus
 ) {
 
-    fun setMember(member: Member) {
+    fun addMember(member: Member) {
         this.member = member
         (member.orders as MutableList).add(this)
     }
@@ -49,7 +49,7 @@ data class Order(
         orderItem.order = this
     }
 
-    fun setDelivery(delivery: Delivery){
+    fun addDelivery(delivery: Delivery) {
         this.delivery = delivery
         delivery.order = this
     }

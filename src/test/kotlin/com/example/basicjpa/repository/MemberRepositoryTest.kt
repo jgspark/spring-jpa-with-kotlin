@@ -31,7 +31,7 @@ class MemberRepositoryTest {
 
         //when
         val memberId = memberRepository.save(member)
-        val findMember = memberRepository.find(memberId)
+        val findMember = memberRepository.findOne(memberId)
 
         //then
         assertEquals(findMember.id, member.id)
