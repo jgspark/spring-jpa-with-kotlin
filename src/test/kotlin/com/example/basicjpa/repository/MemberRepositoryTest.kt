@@ -1,6 +1,7 @@
-package com.example.basicjpa.infra.repository
+package com.example.basicjpa.repository
 
 import com.example.basicjpa.domain.Member
+import com.example.basicjpa.repository.MemberRepository
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith

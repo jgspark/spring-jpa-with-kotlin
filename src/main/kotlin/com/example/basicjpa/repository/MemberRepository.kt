@@ -1,4 +1,4 @@
-package com.example.basicjpa.infra.repository
+package com.example.basicjpa.repository
 
 import com.example.basicjpa.domain.Member
 import jakarta.persistence.EntityManager
