@@ -11,7 +11,7 @@ todo:
  */
 @Repository
 class MemberRepository(
-    val em: EntityManager
+    private val em: EntityManager
 ) {
 
     fun save(member: Member): Long {
