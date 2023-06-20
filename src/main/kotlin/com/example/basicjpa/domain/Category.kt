@@ -25,12 +25,12 @@ data class Category(
         joinColumns = [JoinColumn(name = "category_id")],
         inverseJoinColumns = [JoinColumn(name = "item_id")]
     )
-    val items: List<Item> = listOf(),
+    val items: List<Item> = mutableListOf(),
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
     var parent: Category,
     @OneToMany(mappedBy = "parent")
-    val child: List<Category> = listOf()
+    val child: List<Category> = mutableListOf()
 ) {
 
     fun addChildCategory(child: Category) {

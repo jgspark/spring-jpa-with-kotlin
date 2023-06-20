@@ -21,12 +21,12 @@ abstract class Item(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "item_id")
-    open val id: Long?,
+    open var id: Long?,
     open val name: String,
     open val price: Int,
     open var stockQuantity: Int,
     @ManyToMany(mappedBy = "items")
-    open val categories: List<Category> = listOf()
+    open val categories: List<Category> = mutableListOf()
 ) {
 
 
@@ -50,29 +50,29 @@ abstract class Item(
 @Entity
 @DiscriminatorValue("A")
 data class Album(
-    override val id: Long,
+    override var id: Long?,
     override val name: String,
     override val price: Int,
     override var stockQuantity: Int,
-    override val categories: List<Category>
-) : Item(id, name, price, stockQuantity, categories)
+) : Item(id, name, price, stockQuantity)
 
 @Entity
 @DiscriminatorValue("B")
 data class Book(
-    override val id: Long,
+    override var id: Long?,
     override val name: String,
     override val price: Int,
     override var stockQuantity: Int,
-    override val categories: List<Category>
-) : Item(id, name, price, stockQuantity, categories)
+) : Item(id, name, price, stockQuantity) {
+
+    constructor(name: String, price: Int, stockQuantity: Int) : this(null, name, price, stockQuantity)
+}
 
 @Entity
 @DiscriminatorValue("M")
 data class Movie(
-    override val id: Long,
+    override var id: Long?,
     override val name: String,
     override val price: Int,
     override var stockQuantity: Int,
-    override val categories: List<Category>
-) : Item(id, name, price, stockQuantity, categories)
+) : Item(id, name, price, stockQuantity)

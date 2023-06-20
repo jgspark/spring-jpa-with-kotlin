@@ -13,15 +13,17 @@ data class Member(
     @Id
     @Column(name = "member_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long,
+    val id: Long?,
     val name: String,
     @Embedded
     val address: Address,
     // 연관관계의 주인이 아니다.
     // 명시적선언 (mappedBy)
     @OneToMany(mappedBy = "member")
-    val orders: List<Order> = listOf()
+    val orders: List<Order> = mutableListOf()
 ) {
 
-    constructor(name: String) : this(0L, name, Address())
+    constructor(name: String) : this(null, name, Address())
+
+    constructor(name: String, address: Address) : this(null, name, address)
 }
